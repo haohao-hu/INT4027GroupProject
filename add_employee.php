@@ -3,12 +3,12 @@
 session_start(); // Start the session.
 
 // If no session value is present, redirect the user:
-if (!isset($_SESSION['employee_id'])) {
+/*if (!isset($_SESSION['employee_id'])) {
 	require_once ('includes/login_functions.inc.php');
 	$url = absolute_url('login.php');
 	header("Location: $url");
 	exit();		
-}
+}*/
 $page_title = 'Register';
 include ('includes/header.html');
 echo '<!-- content -->

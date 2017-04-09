@@ -2,7 +2,7 @@
 
 session_start(); // Start the session.
 
-$page_title = 'Welcome to Lotus Chinese Resturant | Contact Us';
+$page_title = '| Contact Us';
 include ('includes/header.html');
 
 // Check if the form has been submitted:

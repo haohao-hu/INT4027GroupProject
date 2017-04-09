@@ -8,7 +8,7 @@
 DEFINE ('DB_USER', 'root');
 DEFINE ('DB_PASSWORD', '123456');
 DEFINE ('DB_HOST', 'localhost');
-DEFINE ('DB_NAME', 'restaurantwebapp');
+DEFINE ('DB_NAME', 'int4027project');
 
 // Make the connection:
 $dbc = @mysqli_connect (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die ('Could not connect to MySQL: ' . mysqli_connect_error() );

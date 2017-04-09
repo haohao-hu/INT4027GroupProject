@@ -2,7 +2,7 @@
 session_start();
 
 // Set the page title and include the HTML header:
-$page_title = 'Browse the menus';
+$page_title = '| Browse the menus';
 include ('includes/header.html');
 
 require_once ('./mysqli_connect.php');
@@ -40,7 +40,7 @@ echo '<div id="content">
 		<td align="left" width="40%"><b>Description</b></td>
 		<td align="right" width="20%"><b>Price</b></td>
 	</tr>';
-$q='SELECT * FROM MENU';
+$q='SELECT * FROM dish';
 // Display all the prints, linked to URLs:
 $r = mysqli_query ($dbc, $q);
 while ($row = mysqli_fetch_array ($r, MYSQLI_ASSOC)) {
