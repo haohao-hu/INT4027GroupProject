@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title><?php echo 'Delicious Meal Web App '.$page_title; ?></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="Resturant website" /> 
+<meta name="keywords" content="Resturant, food, free, cheap" /> 
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+
+
+<!--Scripts-->
+
+
+
+<!--[if lt IE 7]>
+   <script type="text/javascript" src="ie_png.js"></script>
+   <script type="text/javascript">
+       ie_png.fix('.png, .logo h1, .box .left-top-corner, .box .right-top-corner, .box .left-bot-corner, .box .right-bot-corner, .box .border-left, .box .border-right, .box .border-top, .box .border-bot, .box .inner, .special dd, #contacts-form input, #contacts-form textarea');
+   </script>
+<![endif]-->
+</head>
+	
+<body id="page1">
+ 
+<header class="navbar navbar-default"> 
+
+<nav>
+   <!-- header -->
+   <!-- <div id="header"> -->
+      <div class="container_fluid">
+
+             
+            <p class="welcome-top"><?php // welcome message:<!---->
+             function greet ($msg){
+             	
+                if ( (isset($_SESSION['customer_id'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) {
+		 	$name="{$_SESSION['customer_name']}"
+			;
+		 	
+			} else if ( (isset($_SESSION['restaurant_id'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) {
+      $name="{$_SESSION['restaurant_name']}"
+      ;
+      
+      } else {
+			$name='';
+                }
+             echo "<h2>Hi $name, $msg</h2>";
+             }
+             greet('welcome to Delicious Meal Web App!');?>
+             			
+			</p>
+              <ul class="top-links">            
+
+            </ul>
+           
+         
+         <ul class="nav navbar-nav ">
+            <li><a href="index.php" class="first current">Home</a></li>
+            <li><a href="about.php">About</a></li>
+           
+            <li><a href="contact.php">Contact</a></li>
+			<li><a href="browse_menu.php">Menu</a></li>
+			<?php // Create a login/logout link:
+			if (isset($_SESSION['customer_id']) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) {
+        if (isset($_SESSION['admin'])) {
+        echo ' <li><a href="admin_panel.php">Admin</a></li>';
+      }
+      echo ' <li><a href="view_cart.php">shopping cart</a></li>';
+		 	echo ' <li><a href="logout.php">Logout</a>';
+			} else if (isset($_SESSION['restaurant_id'])&& (!strpos($_SERVER['PHP_SELF'], 'logout.php'))) {
+      echo ' <li><a href="logout.php">Logout</a>';    
+      }
+         else {
+			echo '<li><a href="login.php">Login as customer</a>';
+      echo '<li><a href="restaurantlogin.php">Login as restaurant</a>';
+			}
+			?></li>
+           
+         </ul>
+         </div>
+      </div>
+        </nav>
+  </header>
+
+  <!-- </div> -->
+  	
+   <!-- content -->

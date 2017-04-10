@@ -83,7 +83,7 @@ include 'includes/test_input.php';
 
  
  if ($nameErr==""&&$emailErr==""&&$addressErr==""&&$districtErr==""&&$passwordErr==""){
-      $q = "INSERT INTO restaurant (restaurant_name,  address, district, e-mail,password) VALUES ('$name', '$address', '$district', '$email', SHA1('$password'))";     
+      $q = "INSERT INTO restaurant (restaurant_name,  address, district, email,password) VALUES ('$name', '$address', '$district', '$email', SHA1('$password'))";     
       $r = @mysqli_query ($dbc, $q); 
             if ($r) { // If it ran OK.
 
@@ -134,7 +134,27 @@ include 'includes/test_input.php';
 <form id="contacts-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
    <div class="field"><label>Name:</label><input type="text" name="name" value=""/><span class="error">* <?php echo $nameErr;?></span></div>
    <div class="field"><label>Address:</label><input type="text" name="address" value=""/><span class="error">* <?php echo $addressErr;?></span></div>
-   <div class="field"><label>District:</label><input type="text" name="district" value=""/><span class="error">* <?php echo $districtErr;?></span></div>
+   <div class="field"><label>District:</label><select name="district">
+   <option value=""></option>
+<option value="Islands">Islands</option>
+<option value="Kwai Tsing">Kwai Tsing</option>
+<option value="North">North</option>
+<option value="Sai Kung">Sai Kung</option>
+<option value="Sha Tin">Sha Tin</option>
+<option value="Tai Po">Tai Po</option>
+<option value="Tsuen Wan">Tsuen Wan</option>
+<option value="Tuen Mun">Tuen Mun</option>
+<option value="Yuen Long">Yuen Long</option>
+<option value="Kowloon City">Kowloon City</option>
+<option value="Kwun Tong">Kwun Tong</option>
+<option value="Sham Shui Po">Sham Shui Po</option>
+<option value="Wong Tai Sin">Wong Tai Sin</option>
+<option value="Yau Tsim Mong">Yau Tsim Mong</option>
+<option value="Central & Western">Central & Western</option>
+<option value="Eastern">Eastern</option>
+<option value="Southern">Southern</option>
+<option value="Wan Chai">Wan Chai</option>
+</select><span class="error">* <?php echo $districtErr;?></span></div>
 	<div class="field"><label>Email:</label><input type="text" name="email" value=""/><span class="error">* <?php echo $emailErr;?></span></div>
 	<div class="field"><label>Password:</label><input type="password" name="pass" value=""/><span class="error">* <?php echo $passwordErr;?></span></div>
    <div class="field"><label>Password Confirmation:</label><input type="password" name="pass2" value=""/><span class="error">* </span></div>
