@@ -1,6 +1,10 @@
 <?php 
 session_start();
+<<<<<<< HEAD
 if (isset($_SESSION['customer_id'])||isset($_SESSION['restaurant_id'])) {
+=======
+if (isset($_SESSION['customer_id'])) {
+>>>>>>> origin/master
    require_once ('includes/login_functions.inc.php');
    $url = absolute_url('index.php');
    header("Location: $url");
@@ -41,9 +45,15 @@ if (!empty($errors)) {
                	<div class="border-right">
                   	<div class="inner">
 <h2>Customer Login</h2>
+<<<<<<< HEAD
 <form role="form" id="contacts-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 	<div class="form-group"><label>Email:</label><input class="form-control" type="text" name="email" value=""/></div>
 	<div class="form-group"><label>Password:</label><input class="form-control" type="password" name="pass" value=""/></div>
+=======
+<form id="contacts-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+	<div class="field"><label>Email:</label><input type="text" name="email" value=""/></div>
+	<div class="field"><label>Password:</label><input type="password" name="pass" value=""/></div>
+>>>>>>> origin/master
 	<p></p>
 <div class="form-group"><input  type="submit" name="submit" value="Login!" /></a></div>
 	<!--<p>Email Address: <input type="text" name="email" size="20" maxlength="80" /> </p>

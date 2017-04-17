@@ -57,6 +57,7 @@ echo '<div id="content">
                       }
 						echo '<table class="table-striped" border="0" width="100%" cellspacing="3" cellpadding="3" align="center">
 	<tr>
+<<<<<<< HEAD
    <td align="left" width="10%"><b>Restaurant name</b></td>
    <td align="left" width="25%"><b>Image</b></td>
 		<td align="left" width="10%"><b>Dish name</b></td>
@@ -69,6 +70,14 @@ echo '<div id="content">
       
       echo '</tr>';
 
+=======
+		<td align="left" width="20%"><b>Image</b></td>
+		<td align="left" width="20%"><b>Menu Item</b></td>
+		<td align="left" width="40%"><b>Description</b></td>
+		<td align="right" width="20%"><b>Price</b></td>
+	</tr>';
+$q='SELECT * FROM dish';
+>>>>>>> origin/master
 // Display all the prints, linked to URLs:
 $r = mysqli_query ($dbc, $q);
 while ($row = mysqli_fetch_array ($r, MYSQLI_ASSOC)) {

@@ -6,6 +6,7 @@
 <meta name="description" content="Resturant website" /> 
 <meta name="keywords" content="Resturant, food, free, cheap" /> 
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
+<<<<<<< HEAD
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen" />
 <link rel="stylesheet" href="css/datetimepicker.css" type="text/css" rel="stylesheet" media="screen" />
   <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -16,6 +17,9 @@
  <!--<script src="http://maxcdn.bootstrapcdn.bootcss.com/bootstrap/3.3.6/less/dropdowns.less"></script>
   <script src="http://maxcdn.bootstrapcdn.bootcss.com/bootstrap/3.3.6/sprites/sprites.less"></script>-->
 <!-- set options before less.js script -->
+=======
+<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+>>>>>>> origin/master
 
 
 <!--Scripts-->
@@ -29,6 +33,7 @@
    </script>
 <![endif]-->
 </head>
+<<<<<<< HEAD
 	<style>
 .bg-1 { 
     background-color: #1abc9c; /* Green */
@@ -82,6 +87,18 @@
    <!-- <div id="header"> -->
       <div class="container-fluid">
       
+=======
+	
+<body id="page1">
+ 
+<header class="navbar navbar-default"> 
+
+<nav>
+   <!-- header -->
+   <!-- <div id="header"> -->
+      <div class="container_fluid">
+
+>>>>>>> origin/master
              
       <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -92,7 +109,11 @@
       <?php // welcome message:<!---->
              function greet ($msg){
              	
+<<<<<<< HEAD
            if ( (isset($_SESSION['customer_id'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) {
+=======
+                if ( (isset($_SESSION['customer_id'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) {
+>>>>>>> origin/master
 		 	$name="{$_SESSION['customer_name']}"
 			;
 		 	
@@ -103,6 +124,7 @@
       } else {
 			$name='';
                 }
+<<<<<<< HEAD
              echo "<a class=\"navbar-brand\" href=\"#\">Hi $name, $msg</a>";
              }
              greet('welcome to Delicious Meal Web App!');?>
@@ -111,10 +133,24 @@
            
           <div class="collapse navbar-collapse" id="myNavbar">
          <ul class="nav navbar-nav">
+=======
+             echo "<h2>Hi $name, $msg</h2>";
+             }
+             greet('welcome to Delicious Meal Web App!');?>
+             			
+			</p>
+              <ul class="top-links">            
+
+            </ul>
+           
+         
+         <ul class="nav navbar-nav ">
+>>>>>>> origin/master
             <li><a href="index.php" class="first current">Home</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="restaurant.php">Restaurants</a></li>
 			<li><a href="browse_menu.php">Menu</a></li>
+<<<<<<< HEAD
 			<?php // Create a login/logout link:
 			if (isset($_SESSION['customer_id']) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) {
         if (isset($_SESSION['admin'])) {
@@ -133,10 +169,22 @@
          else {
 			echo '<li><a href="login.php">Login as customer</a></li>';
       echo '<li><a href="restaurantlogin.php">Login as restaurant</a></li>';
+=======
+			<?php // Create a login/logout link:<!--<a href="admin_panel.php">Admin</a>-->
+			if ( (isset($_SESSION['customer_id'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) {
+        if (isset($_SESSION['admin'])){
+        echo ' <li><a href="admin_panel.php">admin panel</a></li>';
+      }
+      echo ' <li><a href="view_cart.php">shopping cart</a></li>';
+		 	echo ' <li><a href="logout.php">Logout</a>';
+			} else {
+			echo '<li><a href="login.php">Login</a>';
+>>>>>>> origin/master
 			}
 			?>
            
          </ul>
+<<<<<<< HEAD
                  <form class="navbar-form navbar-left" action="searchresult.php" method="get" >
          <div class="input-group">
           <input type="text" class="form-control" placeholder="Search dish" name="sname">
@@ -153,4 +201,13 @@
    
         <div class="container-fluid bg-3">
      
+=======
+         </div>
+      </div>
+        </nav>
+  </header>
+
+  <!-- </div> -->
+  	
+>>>>>>> origin/master
    <!-- content -->

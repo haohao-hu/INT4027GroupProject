@@ -197,10 +197,20 @@ if (isset($_POST['reviewid'])){
                   </div>
                </div>
                <div class="border-left">
+<<<<<<< HEAD
                 <div class="border-right">
                     <div class="inner">
                       <div class="wrapper"><p>Not a registered customer? <a href="./customer_register_page.php">Register</a> now!</p>
                         <p>Not a registered restaurant? <a href="./restaurant_register_page.php">Register</a> now!</p>                        <p><a href="index.php">Home</a>, <a href="about.php">About us</a>, <a href="browse_menu.php">Menu</a>, <a href="contact.php">Contact us</a>.
+=======
+               	<div class="border-right">
+                  	<div class="inner">
+                   	  <div class="wrapper">
+        
+                        <p>Not a registered customer? <a href="./customer_register_page.php">Register</a> now!</p>
+                        <p>Not a registered restaurant? <a href="./restaurant_register_page.php">Register</a> now!</p>                                               
+                        <p><a href="index.php">Home</a>, <a href="about.php">About us</a>, <a href="browse_menu.php">Menu</a>, <a href="contact.php">Contact us</a>.
+>>>>>>> origin/master
                       </div>
                      </div>
                   </div>

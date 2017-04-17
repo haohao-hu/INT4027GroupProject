@@ -1,11 +1,17 @@
 <?php 
  session_start();
    require_once ('includes/login_functions.inc.php');
+<<<<<<< HEAD
    require_once ('mysqli_connect.php');
 
 if (isset($_SESSION['restaurant_id'])) {
 
    $url = absolute_url('restaurantlogin.php');
+=======
+if (isset($_SESSION['restaurant_id'])) {
+
+   $url = absolute_url('index.php');
+>>>>>>> origin/master
    header("Location: $url");
    exit();     
 }
@@ -13,10 +19,25 @@ if (isset($_SESSION['restaurant_id'])) {
 // and it creates the entire Register page, including the form.
 
 // Include the header:
+<<<<<<< HEAD
 $page_title = '| Restaurant Sign up';
 include ('includes/header.html');
 
 
+=======
+$page_title = '| Restaurant registration';
+include ('includes/header.html');
+
+// Print any error messages, if they exist:
+if (!empty($errors)) {
+	echo '<h1>Error!</h1>
+	<p class="error">The following error(s) occurred:<br />';
+	foreach ($errors as $msg) {
+		echo " - $msg<br />\n";
+	}
+	echo '</p><p>Please try again.</p>';
+}
+>>>>>>> origin/master
 
 // Display the form:
 ?>
@@ -31,6 +52,7 @@ $emailErr="";
 $addressErr="";
 $districtErr="";
 $passwordErr="";
+<<<<<<< HEAD
 $categoryErr="";
 $newcategoryErr =""; 
 if ($_SERVER["REQUEST_METHOD"]=="POST"&&isset($_POST['newcategorysubmitted'])) {
@@ -60,6 +82,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"&&isset($_POST['newcategorysubmitted'])) {
 
 }
 if ($_SERVER["REQUEST_METHOD"]=="POST"&&isset($_POST['submitted'])) {
+=======
+
+if ($_SERVER["REQUEST_METHOD"]=="POST") {
+>>>>>>> origin/master
 
    require_once ('mysqli_connect.php');
 include 'includes/test_input.php';
@@ -78,7 +104,11 @@ include 'includes/test_input.php';
     $email = test_input($_POST["email"]);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   $emailErr = "Invalid email format"; 
+<<<<<<< HEAD
     } 
+=======
+    }
+>>>>>>> origin/master
   }
 
   if (empty($_POST["address"])) {
@@ -93,12 +123,15 @@ include 'includes/test_input.php';
     $district = test_input($_POST["district"]);
   }
 
+<<<<<<< HEAD
       if (empty($_POST["category"])) {
     $categoryErr= "At least one category is required";
   } else {
     $category = $_POST["category"];
   }
 
+=======
+>>>>>>> origin/master
   if (empty($_POST["pass"])) {
     $passwordErr = "Password is required";
   } else if ($_POST['pass'] != $_POST['pass2']){
@@ -109,6 +142,7 @@ include 'includes/test_input.php';
   }
 
  
+<<<<<<< HEAD
  if ($nameErr==""&&$emailErr==""&&$addressErr==""&&$districtErr==""&&$passwordErr==""&&$categoryErr==""){
       $q = "INSERT INTO restaurant (restaurant_name,  address, district, email,password) VALUES ('$name', '$address', '$district', '$email', SHA1('$password'))";     
       $r = @mysqli_query ($dbc, $q); 
@@ -122,6 +156,13 @@ include 'includes/test_input.php';
       }
       
     
+=======
+ if ($nameErr==""&&$emailErr==""&&$addressErr==""&&$districtErr==""&&$passwordErr==""){
+      $q = "INSERT INTO restaurant (restaurant_name,  address, district, email,password) VALUES ('$name', '$address', '$district', '$email', SHA1('$password'))";     
+      $r = @mysqli_query ($dbc, $q); 
+            if ($r) { // If it ran OK.
+
+>>>>>>> origin/master
          // Print a message:
          echo '<h1>Thank you!</h1>
       <p>You are now registered. </p>';
@@ -131,7 +172,11 @@ include 'includes/test_input.php';
       $_SESSION['restaurant_name'] = $name;
       
       // Redirect:
+<<<<<<< HEAD
       $url = absolute_url ();
+=======
+      $url = absolute_url ('restaurant.php');
+>>>>>>> origin/master
       header("Location: $url");
       exit(); 
       
@@ -146,8 +191,13 @@ include 'includes/test_input.php';
                   
       }
 
+<<<<<<< HEAD
  }//else {echo "<h2>System error</h2>";}
 
+=======
+ }
+ mysqli_close($dbc);
+>>>>>>> origin/master
 }
   
 ?>
@@ -157,6 +207,7 @@ include 'includes/test_input.php';
          <div class="inside">
             <!-- box begin -->
             <div class="box alt">
+<<<<<<< HEAD
               <div class="left-top-corner">
                 <div class="right-top-corner">
                     <div class="border-top"></div>
@@ -179,6 +230,21 @@ if (!empty($errors)) {
    <div class="form-group"><label>Name:</label><input class="form-control"  type="text" name="name" value=""/><span class="error">* <?php echo $nameErr;?></span></div>
    <div class="form-group"><label>Address:</label><input class="form-control"  type="text" name="address" value=""/><span class="error">* <?php echo $addressErr;?></span></div>
    <div class="form-group"><label>District:</label><select class="form-control"  name="district">
+=======
+            	<div class="left-top-corner">
+               	<div class="right-top-corner">
+                  	<div class="border-top"></div>
+                  </div>
+               </div>
+               <div class="border-left">
+               	<div class="border-right">
+                  	<div class="inner">
+<h2>Restaurant registration</h2>
+<form id="contacts-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+   <div class="field"><label>Name:</label><input type="text" name="name" value=""/><span class="error">* <?php echo $nameErr;?></span></div>
+   <div class="field"><label>Address:</label><input type="text" name="address" value=""/><span class="error">* <?php echo $addressErr;?></span></div>
+   <div class="field"><label>District:</label><select name="district">
+>>>>>>> origin/master
    <option value=""></option>
 <option value="Islands">Islands</option>
 <option value="Kwai Tsing">Kwai Tsing</option>
@@ -199,6 +265,7 @@ if (!empty($errors)) {
 <option value="Southern">Southern</option>
 <option value="Wan Chai">Wan Chai</option>
 </select><span class="error">* <?php echo $districtErr;?></span></div>
+<<<<<<< HEAD
   
   <div class="form-group"> <label>Category: (Select one or more)</label><span class="error">* <?php echo $categoryErr;?></span><br/><table>
     <?php 
@@ -222,12 +289,27 @@ while ($row = mysqli_fetch_array ($r2, MYSQLI_ASSOC)) {
 
   
 
+=======
+	<div class="field"><label>Email:</label><input type="text" name="email" value=""/><span class="error">* <?php echo $emailErr;?></span></div>
+	<div class="field"><label>Password:</label><input type="password" name="pass" value=""/><span class="error">* <?php echo $passwordErr;?></span></div>
+   <div class="field"><label>Password Confirmation:</label><input type="password" name="pass2" value=""/><span class="error">* </span></div>
+	<p></p>
+<div class="alignright"><input type="submit" name="submit" value="Register!" /></a></div>
+
+	<input type="hidden" name="submitted" value="TRUE" />
+</form>
+>>>>>>> origin/master
 
     </div>
                </div>
                <div class="left-bot-corner">
+<<<<<<< HEAD
                 <div class="right-bot-corner">
                     <div class="border-bot"></div>
+=======
+               	<div class="right-bot-corner">
+                  	<div class="border-bot"></div>
+>>>>>>> origin/master
                   </div>
                </div>
             </div>
@@ -243,5 +325,8 @@ echo '
    </div>
    <!-- footer -->';
 include ('includes/footer.html');
+<<<<<<< HEAD
  mysqli_close($dbc);
+=======
+>>>>>>> origin/master
 ?>

@@ -6,8 +6,12 @@
 
 // Set the database access information as constants:
 DEFINE ('DB_USER', 'root');
+<<<<<<< HEAD
 //DEFINE ('DB_PASSWORD', '');
 DEFINE ('DB_PASSWORD', '123456');
+=======
+DEFINE ('DB_PASSWORD', '');
+>>>>>>> origin/master
 DEFINE ('DB_HOST', 'localhost');
 DEFINE ('DB_NAME', 'int4027project');
 

@@ -35,6 +35,7 @@ $nameErr="";
 $emailErr="";
 $addressErr="";
 $passwordErr="";
+<<<<<<< HEAD
 $categoryErr="";
 $newcategoryErr =""; 
 if ($_SERVER["REQUEST_METHOD"]=="POST"&&isset($_POST['newcategorysubmitted'])) {
@@ -65,6 +66,10 @@ if ($_SERVER["REQUEST_METHOD"]=="POST"&&isset($_POST['newcategorysubmitted'])) {
 
 }
 if ($_SERVER["REQUEST_METHOD"]=="POST"&&isset($_POST['submitted'])) {
+=======
+
+if ($_SERVER["REQUEST_METHOD"]=="POST") {
+>>>>>>> origin/master
   /* $name=test_input($_POST["name"]);
 $email=test_input($_POST["email"]);
 $address=test_input($_POST["address"]);
@@ -95,12 +100,15 @@ include 'includes/test_input.php';
     $address = test_input($_POST["address"]);
   }
 
+<<<<<<< HEAD
         if (empty($_POST["category"])) {
     $categoryErr= "At least one category is required";
   } else {
     $category = $_POST["category"];
   }
 $fdish=$_POST["favouritedish"];
+=======
+>>>>>>> origin/master
   if (empty($_POST["pass"])) {
     $passwordErr = "Password is required";
   } else if ($_POST['pass'] != $_POST['pass2']){
@@ -111,6 +119,7 @@ $fdish=$_POST["favouritedish"];
   }
 
  
+<<<<<<< HEAD
  if ($nameErr==""&&$emailErr==""&&$addressErr==""&&$passwordErr==""&&$categoryErr==""){
       $q = "INSERT INTO customer (customer_name,  customer_address, customer_email,customer_password) VALUES ('$name', '$address', '$email', SHA1('$password'))";     
       $r = @mysqli_query ($dbc, $q); 
@@ -126,6 +135,13 @@ $fdish=$_POST["favouritedish"];
        $r9 = @mysqli_query($dbc, $q9)
         Or die ("Cannot add customer-dish association.");    
       }
+=======
+ if ($nameErr==""&&$emailErr==""&&$addressErr==""&&$passwordErr==""){
+      $q = "INSERT INTO customer (customer_name,  customer_address, customer_email,customer_password) VALUES ('$name', '$address', '$email', SHA1('$password'))";     
+      $r = @mysqli_query ($dbc, $q); 
+            if ($r) { // If it ran OK.
+
+>>>>>>> origin/master
          // Print a message:
          echo '<h1>Thank you!</h1>
       <p>You are now registered. </p>';
@@ -135,7 +151,11 @@ $fdish=$_POST["favouritedish"];
       $_SESSION['customer_name'] = $name;
       
       // Redirect:
+<<<<<<< HEAD
       $url = absolute_url ();
+=======
+      $url = absolute_url ('restaurant.php');
+>>>>>>> origin/master
       header("Location: $url");
       exit(); 
       
@@ -151,7 +171,11 @@ $fdish=$_POST["favouritedish"];
       }
 
  }
+<<<<<<< HEAD
 
+=======
+ mysqli_close($dbc);
+>>>>>>> origin/master
 }
   
 ?>
@@ -170,6 +194,7 @@ $fdish=$_POST["favouritedish"];
                	<div class="border-right">
                   	<div class="inner">
 <h2>Customer registration</h2>
+<<<<<<< HEAD
 <form role="form" id="register-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
    <div class="form-group"><label>Name:</label><input class="form-control"  type="text" name="name" value=""/><span class="error">* <?php echo $nameErr;?></span></div>
    <div class="form-group"><label>Address:</label><input class="form-control"  type="text" name="address" value=""/><span class="error">* <?php echo $addressErr;?></span></div>
@@ -215,6 +240,18 @@ while ($row6 = mysqli_fetch_array ($r6, MYSQLI_ASSOC)) {
 <div class="form-group"><input type="submit" name="submit" value="Register!" form="register-form" /></a></div>
 
 	<input type="hidden" name="submitted" value="TRUE" form="register-form" />
+=======
+<form id="contacts-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+   <div class="field"><label>Name:</label><input type="text" name="name" value=""/><span class="error">* <?php echo $nameErr;?></span></div>
+   <div class="field"><label>Address:</label><input type="text" name="address" value=""/><span class="error">* <?php echo $addressErr;?></span></div>
+	<div class="field"><label>Email:</label><input type="text" name="email" value=""/><span class="error">* <?php echo $emailErr;?></span></div>
+	<div class="field"><label>Password:</label><input type="password" name="pass" value=""/><span class="error">* <?php echo $passwordErr;?></span></div>
+   <div class="field"><label>Password Confirmation:</label><input type="password" name="pass2" value=""/><span class="error">* </span></div>
+	<p></p>
+<div class="alignright"><input type="submit" name="submit" value="Register!" /></a></div>
+
+	<input type="hidden" name="submitted" value="TRUE" />
+>>>>>>> origin/master
 </form>
 
     </div>
@@ -237,5 +274,8 @@ echo '
    </div>
    <!-- footer -->';
 include ('includes/footer.html');
+<<<<<<< HEAD
  mysqli_close($dbc);
+=======
+>>>>>>> origin/master
 ?>
