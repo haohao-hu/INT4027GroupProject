@@ -3,6 +3,12 @@
 // Set the page title and include the HTML header:
 session_start(); // Start the session.
 
+if (!isset($_SESSION['customer_id'])) {
+
+   $url = absolute_url('login.php');
+   header("Location: $url");
+   exit();     
+}
 $page_title = 'Add to Cart';
 include ('includes/header.html');
 echo '<div id="content">
@@ -22,24 +28,25 @@ echo '<div id="content">
 
 	
 
-if (isset ($_GET['pid']) && is_numeric($_GET['pid']) ) { // Check for a print ID.
+if (isset($_POST['dishid']) && is_numeric($_POST['dishid']) && isset($_POST['quantity']) && is_numeric($_POST['quantity'])) { // Check for a print ID.
 
-	$pid = (int) $_GET['pid'];
+	$dishid = (int) $_POST['dishid'];
+	$quantity = (int) $_POST['quantity'];
 
 	// Check if the cart already contains one of these prints;
 	// If so, increment the quantity:
-	if (isset($_SESSION['cart'][$pid])) {
+	if (isset($_SESSION['cart'][$dishid])) {
 	
-		$_SESSION['cart'][$pid]['quantity']++; // Add another.
+		$_SESSION['cart'][$dishid]['quantity']+=$quantity; // Add another.
 
 		// Display a message.
-		echo '<p>Another of the food has been added to your order.</p>';
+		echo '<p>The food has been added to your order.</p>';
 		
 	} else { // New product to the cart.
 
 		// Get the print's price from the database:
-		require_once ('../mysqli_connect.php');
-		$q = "SELECT price FROM prints WHERE prints.print_id = $pid";
+		require_once ('./mysqli_connect.php');
+		$q = "SELECT price FROM dish WHERE dish.dish_id = ".$dishid;
 		$r = mysqli_query ($dbc, $q);		
 		if (mysqli_num_rows($r) == 1) { // Valid print ID.
 		
@@ -47,7 +54,7 @@ if (isset ($_GET['pid']) && is_numeric($_GET['pid']) ) { // Check for a print ID
 			list($price) = mysqli_fetch_array ($r, MYSQLI_NUM);
 			
 			// Add to the cart:
-			$_SESSION['cart'][$pid] = array ('quantity' => 1, 'price' => $price);
+			$_SESSION['cart'][$dishid] = array ('quantity' => $quantity, 'price' => $price);
 
 			// Display a message:
 			echo '<p>Your order have been submitted.</p>';

@@ -3,8 +3,14 @@
 
 session_start(); // Start the session.
 
+if (!isset($_SESSION['customer_id'])) {
+
+   $url = absolute_url('login.php');
+   header("Location: $url");
+   exit();     
+}
 // Set the page title and include the HTML header:
-$page_title = 'View Your Shopping Cart';
+$page_title = '| View Your Shopping Cart';
 include ('./includes/header.html');
 
 // Check if the form has been submitted (to update the cart):
@@ -14,13 +20,13 @@ if (isset($_POST['submitted'])) {
 	foreach ($_POST['qty'] as $k => $v) {
 
 		// Must be integers!
-		$pid = (int) $k;
+		$dishid = (int) $k;
 		$qty = (int) $v;
 		
 		if ( $qty == 0 ) { // Delete.
-			unset ($_SESSION['cart'][$pid]);
+			unset ($_SESSION['cart'][$dishid]);
 		} elseif ( $qty > 0 ) { // Change quantity.
-			$_SESSION['cart'][$pid]['quantity'] = $qty;
+			$_SESSION['cart'][$dishid]['quantity'] = $qty;
 		}
 		
 	} // End of FOREACH.
@@ -30,12 +36,12 @@ if (isset($_POST['submitted'])) {
 if (!empty($_SESSION['cart'])) {
 
 	// Retrieve all of the information for the prints in the cart:
-	require_once ('../mysqli_connect.php');
-	$q = "SELECT print_id, CONCAT_WS(' ', first_name, middle_name, last_name) AS artist, print_name FROM artists, prints WHERE artists.artist_id = prints.artist_id AND prints.print_id IN (";
-	foreach ($_SESSION['cart'] as $pid => $value) {
-		$q .= $pid . ',';
+	require_once ('./mysqli_connect.php');
+	$q = "SELECT * FROM dish, restaurant WHERE restaurant.restaurant_id = dish.restaurantId AND dish.dish_id IN (";
+	foreach ($_SESSION['cart'] as $dishid => $value) {
+		$q .= $dishid . ',';
 	}
-	$q = substr($q, 0, -1) . ') ORDER BY artists.last_name ASC';
+	$q = substr($q, 0, -1) . ') ORDER BY dish.dish_name ASC';
 	$r = mysqli_query ($dbc, $q);
 	
 	// Create a form and a table:
@@ -55,10 +61,10 @@ if (!empty($_SESSION['cart'])) {
                   	<div class="inner">
                    ';
 	echo '<form action="view_cart.php" method="post">
-<table border="0" width="90%" cellspacing="3" cellpadding="3" align="center">
+<table class="table-striped" border="0" width="100%" cellspacing="3" cellpadding="3" align="center">
 	<tr>
-		<td align="left" width="30%"><b>Artist</b></td>
-		<td align="left" width="30%"><b>Print Name</b></td>
+		<td align="left" width="30%"><b>Restaurant</b></td>
+		<td align="left" width="30%"><b>Dish Name</b></td>
 		<td align="right" width="10%"><b>Price</b></td>
 		<td align="center" width="10%"><b>Qty</b></td>
 		<td align="right" width="10%"><b>Total Price</b></td>
@@ -70,15 +76,15 @@ if (!empty($_SESSION['cart'])) {
 	while ($row = mysqli_fetch_array ($r, MYSQLI_ASSOC)) {
 		
 		// Calculate the total and sub-totals.
-		$subtotal = $_SESSION['cart'][$row['print_id']]['quantity'] * $_SESSION['cart'][$row['print_id']]['price'];
+		$subtotal = $_SESSION['cart'][$row['dish_id']]['quantity'] * $_SESSION['cart'][$row['dish_id']]['price'];
 		$total += $subtotal;
 		
 		// Print the row.
 		echo "\t<tr>
-		<td align=\"left\">{$row['artist']}</td>
-		<td align=\"left\">{$row['print_name']}</td>
-		<td align=\"right\">\${$_SESSION['cart'][$row['print_id']]['price']}</td>
-		<td align=\"center\"><input type=\"text\" size=\"3\" name=\"qty[{$row['print_id']}]\" value=\"{$_SESSION['cart'][$row['print_id']]['quantity']}\" /></td>
+		<td align=\"left\">{$row['restaurant_name']}</td>
+		<td align=\"left\">{$row['dish_name']}</td>
+		<td align=\"right\">\${$_SESSION['cart'][$row['dish_id']]['price']}</td>
+		<td align=\"center\"><input type=\"text\" size=\"3\" name=\"qty[{$row['dish_id']}]\" value=\"{$_SESSION['cart'][$row['dish_id']]['quantity']}\" /></td>
 		<td align=\"right\">$" . number_format ($subtotal, 2) . "</td>
 	</tr>\n";
 	
@@ -98,7 +104,10 @@ if (!empty($_SESSION['cart'])) {
 	<div align="center"><input type="submit" name="submit" value="Update My Cart" /></div>
 	<input type="hidden" name="submitted" value="TRUE" />
 	</form><p align="center">Enter a quantity of 0 to remove an item.
-	<br /><br /><a href="checkout.php">Checkout</a></p>';
+	<br /><br /><form action="checkout.php" method="post"><div align="center"><input type="submit" name="submit" value="Checkout" /></div>
+	<input type="hidden" name="submitted" value="TRUE" />
+	<input type="hidden" name="totalcost" value="'.$total.'" />
+	</form></p>';
 
 } else {
 	echo '
@@ -115,7 +124,7 @@ if (!empty($_SESSION['cart'])) {
                </div>
                <div class="border-left">
                	<div class="border-right">
-                  	<div class="inner"> <p>Your cart is currently empty.</p>
+                  	<div class="inner"> <p><h4>Your cart is currently empty.</h4></p>
 					</div>
                   </div>
                </div>

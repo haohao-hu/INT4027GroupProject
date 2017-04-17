@@ -10,7 +10,7 @@ if (isset($_SESSION['customer_id'])||isset($_SESSION['restaurant_id'])) {
 // and it creates the entire login page, including the form.
 
 // Include the header:
-$page_title = '| Customer Login';
+$page_title = '| Restaurant Login';
 include ('includes/header.html');
 
 // Print any error messages, if they exist:
@@ -40,18 +40,18 @@ if (!empty($errors)) {
                <div class="border-left">
                	<div class="border-right">
                   	<div class="inner">
-<h2>Customer Login</h2>
+<h2>Restaurant Login</h2>
 <form role="form" id="contacts-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 	<div class="form-group"><label>Email:</label><input class="form-control" type="text" name="email" value=""/></div>
 	<div class="form-group"><label>Password:</label><input class="form-control" type="password" name="pass" value=""/></div>
 	<p></p>
-<div class="form-group"><input  type="submit" name="submit" value="Login!" /></a></div>
+<div class="form-group"><input type="submit" name="submit" value="Login!" /></a></div>
 	<!--<p>Email Address: <input type="text" name="email" size="20" maxlength="80" /> </p>
 	<p>Password: <input type="password" name="pass" size="20" maxlength="20" /></p>
 	<div><input type="submit" name="submit" value="Login" /></div>-->
 	<input type="hidden" name="submitted" value="TRUE" />
 </form>
-<p>Not registered yet? <a href="./customer_register_page.php">Register as a customer now!</a></p>
+<p>Not registered yet? <a href="./restaurant_register_page.php">Register as a restaurant now!</a></p>
     </div>
                </div>
                <div class="left-bot-corner">

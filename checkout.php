@@ -1,24 +1,36 @@
 <?php # 
 
 session_start(); // Start the session.
+if (!isset($_SESSION['customer_id'])) {
 
+   $url = absolute_url('login.php');
+   header("Location: $url");
+   exit();     
+}
 // Set the page title and include the HTML header.
-$page_title = 'Order Confirmation';
+$page_title = '| Order Confirmation';
 include ('includes/header.html');
 
+if (!isset($_POST['submitted'])) { 
+	echo '<div align="center"><h1>This page has been accessed in error!</h1></div>';
+	include ('./includes/footer.html');
+	exit();
+	 } else {
+	
+
 // Assume that the customer is logged in and that this page has access to the customer's ID:
-$customer = 1; // Temporary.
+$customer = $_SESSION['customer_id']; // Temporary.
 
 // Assume that this page receives the order total.
-$total = 178.93; // Temporary.
+$total = $_POST['totalcost']; // Temporary.
 
-require_once ('../mysqli_connect.php'); // Connect to the database.
+require_once ('./mysqli_connect.php'); // Connect to the database.
 
 // Turn autocommit off.
 mysqli_autocommit($dbc, FALSE);
 
 // Add the order to the orders table...
-$q = "INSERT INTO orders (customer_id, total) VALUES ($customer, $total)";
+$q = "INSERT INTO purchase (customerId, total_cost) VALUES ($customer, $total)";
 $r = mysqli_query($dbc, $q);
 if (mysqli_affected_rows($dbc) == 1) {
 
@@ -28,15 +40,15 @@ if (mysqli_affected_rows($dbc) == 1) {
 	// Insert the specific order contents into the database...
 	
 	// Prepare the query:
-	$q = "INSERT INTO order_contents (order_id, print_id, quantity, price) VALUES (?, ?, ?, ?)";
+	$q = "INSERT INTO item (purchaseId, dishId, quantity) VALUES (?, ?, ?)";
 	$stmt = mysqli_prepare($dbc, $q);
-	mysqli_stmt_bind_param($stmt, 'iiid', $oid, $pid, $qty, $price);
+	mysqli_stmt_bind_param($stmt, 'iii', $oid, $dishid, $qty);
 	
 	// Execute each query, count the total affected:
 	$affected = 0;
-	foreach ($_SESSION['cart'] as $pid => $item) {
+	foreach ($_SESSION['cart'] as $dishid => $item) {
 		$qty = $item['quantity'];
-		$price = $item['price'];
+		//$price = $item['price'];
 		mysqli_stmt_execute($stmt);
 		$affected += mysqli_stmt_affected_rows($stmt);
 	}
@@ -67,7 +79,7 @@ if (mysqli_affected_rows($dbc) == 1) {
                <div class="border-left">
                	<div class="border-right">
                   	<div class="inner">
-                     	<div class="wrapper"><p>Thank you for your order. You will be notified when the is ready.</p>';
+                     	<div class="wrapper"><p>Thank you for your order. You will be notified when the food is delivered.</p>';
 		
 		// Send emails and do whatever else.
 	
@@ -106,4 +118,5 @@ echo '						</div>
    </div>';
 
 include ('./includes/footer.html');
+} 
 ?>
