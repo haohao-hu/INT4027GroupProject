@@ -3,11 +3,9 @@
 session_start(); // Access the existing session.
 
 // If no session variable exists, redirect the user:
-<<<<<<< HEAD
+
 if (!isset($_SESSION['customer_id'])&&!isset($_SESSION['restaurant_id'])) {
-=======
-if (!isset($_SESSION['customer_id'])) {
->>>>>>> origin/master
+
 
 	require_once ('includes/login_functions.inc.php');
 	$url = absolute_url();

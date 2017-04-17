@@ -51,15 +51,13 @@ function check_login($dbc, $table, $email = '', $pass = '') {
 	if (empty($errors)) { // If everything's OK.
 
 		// Retrieve the user_id and first_name for that email/password combination:
-<<<<<<< HEAD
+
 	    if ($table=='restaurant') {
 		$q = "SELECT $table"."_id, ".$table."_name FROM $table WHERE email='$e' AND password=SHA1('$p')";	
 	} elseif ($table=='customer') {	
 	$q = "SELECT $table"."_id, ".$table."_name, admin FROM $table WHERE ".$table."_email='$e' AND ".$table."_password=SHA1('$p')";	
 }
-=======
-		$q = "SELECT $table"."_id, ".$table."_name FROM $table WHERE ".$table."_email='$e' AND ".$table."_password=SHA1('$p')";		
->>>>>>> origin/master
+
 		$r = @mysqli_query ($dbc, $q); // Run the query.
 		
 		// Check the result:
