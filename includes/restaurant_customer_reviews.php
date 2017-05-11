@@ -19,7 +19,7 @@ echo '<ul class="list-group">';
    if (isset($_SESSION['restaurant_id'])) {
    echo ', <form class="form-inline" enctype="multipart/form-data" action="index.php" method="post" role="form" ><input type="hidden" name="reviewid" value="'.$row5[6].'" /><input type="hidden" name="submitted" value="True" /><input type="submit" name="submit" value="reply"  /></form>';
  }    
-   if (isset($_SESSION['admin'])||$_SESSION['customer_id']==$row5[4]) {
+   if (isset($_SESSION['admin'])||(isset($_SESSION['customer_id'])&&$_SESSION['customer_id']==$row5[4])) {
     //require_once('../mysqli_connect.php');
    echo ', <form enctype="multipart/form-data" action="restaurant_profile.php" method="post" role="form" ><input type="hidden" name="rid" value="'.$row5[6].'" /><input type="hidden" name="submitted" value="True" /><input type="submit" name="submit" value="Delete review"  /></form>';
  }
