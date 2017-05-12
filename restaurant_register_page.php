@@ -135,16 +135,16 @@ include 'includes/test_input.php';
          // Print a message:
          echo '<h1>Thank you!</h1>
       <p>You are now registered. </p>';
-      session_start();
+      //session_start();
       list ($check, $data) = check_login($dbc, 'restaurant',$email, $password);
       $_SESSION['restaurant_id'] = $data['restaurant_id'];
       $_SESSION['restaurant_name'] = $name;
       
       // Redirect:
 
-      $url = absolute_url ();
+      //$url = absolute_url ();
 
-      header("Location: $url");
+      //header("Location: $url");
       exit(); 
       
       } else { // If it did not run OK.
