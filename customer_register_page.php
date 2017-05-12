@@ -13,7 +13,6 @@ if (isset($_SESSION['customer_id'])) {
 // Include the header:
 $page_title = '| Customer registration';
 include ('includes/header.html');
-
 // Print any error messages, if they exist:
 if (!empty($errors)) {
 	echo '<h1>Error!</h1>
@@ -23,10 +22,7 @@ if (!empty($errors)) {
 	}
 	echo '</p><p>Please try again.</p>';
 }
-
 // Display the form:
-?>
-<?php
 $name="";
 $email="";
 $address="";
@@ -35,7 +31,6 @@ $nameErr="";
 $emailErr="";
 $addressErr="";
 $passwordErr="";
-
 $categoryErr="";
 $newcategoryErr =""; 
 if ($_SERVER["REQUEST_METHOD"]=="POST"&&isset($_POST['newcategorysubmitted'])) {
@@ -133,8 +128,7 @@ $fdish=$_POST["favouritedish"];
       }
 
          // Print a message:
-        // echo '<h1>Thank you!</h1>
-      //<p>You are now registered. </p>';
+        
       //session_start();
       list ($check, $data) = check_login($dbc, 'customer',$email, $password);
       $_SESSION['customer_id'] = $data['customer_id'];
@@ -143,13 +137,10 @@ $fdish=$_POST["favouritedish"];
     //$_SESSION['admin'] = $data['admin'];
     //}
       // Redirect:
-
-      $url = absolute_url('index.php');
-
-      header("Location: $url");
+//$url = absolute_url('customer_register_page.php');
+//header("Location: ".$url);
+      echo '<h1>Thank you!</h1><p>You are now registered. </p>';
       exit(); 
-
-      
       } else { // If it did not run OK.
          
          // Public message:

@@ -6,7 +6,6 @@
 <meta name="description" content="Resturant website" /> 
 <meta name="keywords" content="Resturant, food, free, cheap" /> 
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" />
-
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen" />
 <link rel="stylesheet" href="css/datetimepicker.css" type="text/css" rel="stylesheet" media="screen" />
   <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -17,13 +16,7 @@
  <!--<script src="http://maxcdn.bootstrapcdn.bootcss.com/bootstrap/3.3.6/less/dropdowns.less"></script>
   <script src="http://maxcdn.bootstrapcdn.bootcss.com/bootstrap/3.3.6/sprites/sprites.less"></script>-->
 <!-- set options before less.js script -->
-
-
-
 <!--Scripts-->
-
-
-
 <!--[if lt IE 7]>
    <script type="text/javascript" src="ie_png.js"></script>
    <script type="text/javascript">
@@ -31,8 +24,7 @@
    </script>
 <![endif]-->
 </head>
-
-	<style>
+<style>
 .bg-1 { 
     background-color: #1abc9c; /* Green */
     color: #ffffff;
@@ -78,15 +70,10 @@
 }
 </style>
 <body>
- 
-
 <nav class="navbar navbar-default">
    <!-- header -->
    <!-- <div id="header"> -->
-      <div class="container-fluid">
-      
-
-             
+      <div class="container-fluid">  
       <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
@@ -95,26 +82,19 @@
       </button>
       <?php // welcome message:<!---->
              function greet ($msg){
-             	
-
            if ( (isset($_SESSION['customer_id'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) {
-
 		 	$name="{$_SESSION['customer_name']}"
 			;
-		 	
 			} else if ( (isset($_SESSION['restaurant_id'])) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) {
       $name="{$_SESSION['restaurant_name']}"
       ;
-      
       } else {
 			$name='';
                 }
-
              echo "<a class=\"navbar-brand\" href=\"#\">Hi $name, $msg</a>";
              }
              greet('welcome to Delicious Meal Web App!');?>
-             			
-			</div>
+           </div>
            
           <div class="collapse navbar-collapse" id="myNavbar">
          <ul class="nav navbar-nav">
@@ -123,7 +103,6 @@
             <li><a href="about.php">About</a></li>
             <li><a href="restaurant.php">Restaurants</a></li>
 			<li><a href="browse_menu.php">Menu</a></li>
-
 			<?php // Create a login/logout link:
 			if (isset($_SESSION['customer_id']) && (!strpos($_SERVER['PHP_SELF'], 'logout.php')) ) {
         if (isset($_SESSION['admin'])) {
@@ -142,13 +121,7 @@
          else {
 			echo '<li><a href="login.php">Login as customer</a></li>';
       echo '<li><a href="restaurantlogin.php">Login as restaurant</a></li>';
-
-			}
-			?>
-           
-         </ul>
-
-                 <form class="navbar-form navbar-left" action="searchresult.php" method="get" >
+			}?></ul><form class="navbar-form navbar-left" action="searchresult.php" method="get" >
          <div class="input-group">
           <input type="text" class="form-control" placeholder="Search dish" name="sname">
           <div class="input-group-btn">
@@ -160,9 +133,4 @@
        </form>
          </div>
          </div>
-        </nav>
-   
-        <div class="container-fluid bg-3">
-     
-
-   <!-- content -->
+</nav><div class="container-fluid bg-3">

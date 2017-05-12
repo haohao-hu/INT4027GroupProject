@@ -4,10 +4,7 @@
 //$page_title = '| home';
    require_once ('includes/login_functions.inc.php');
    require_once ('mysqli_connect.php');
-   ?>
-  
- 
-<?php  
+   ?><?php  
 session_start(); 
 /*if (!isset($_SESSION['restaurant_id'])&&!isset($_SESSION['customer_id'])) {
 
