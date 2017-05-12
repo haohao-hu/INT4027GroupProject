@@ -133,19 +133,22 @@ $fdish=$_POST["favouritedish"];
       }
 
          // Print a message:
-         echo '<h1>Thank you!</h1>
-      <p>You are now registered. </p>';
-      session_start();
+        // echo '<h1>Thank you!</h1>
+      //<p>You are now registered. </p>';
+      //session_start();
       list ($check, $data) = check_login($dbc, 'customer',$email, $password);
       $_SESSION['customer_id'] = $data['customer_id'];
       $_SESSION['customer_name'] = $name;
-      
+        //  if ($data['admin']==1) {
+    //$_SESSION['admin'] = $data['admin'];
+    //}
       // Redirect:
 
-      $url = absolute_url ();
+      $url = absolute_url('index.php');
 
       header("Location: $url");
       exit(); 
+
       
       } else { // If it did not run OK.
          
