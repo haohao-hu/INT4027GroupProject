@@ -33,9 +33,6 @@ include ('includes/footer.html');
 
 // Include the header:
 $page_title = '| Edit Restaurant profile';
-include ('includes/header.html');
-
-
 
 // Display the form:
 ?>
@@ -167,23 +164,9 @@ include 'includes/test_input.php';
  }//else {echo "<h2>System error</h2>";}
 
 }
-  
+  require_once ('includes/header.html');
 ?>
-<!-- content -->
-   <div id="content">
-      <div class="container">
-         <div class="inside">
-            <!-- box begin -->
-            <div class="box alt">
-              <div class="left-top-corner">
-                <div class="right-top-corner">
-                    <div class="border-top"></div>
-                  </div>
-               </div>
-               <div class="border-left">
-                <div class="border-right">
-                    <div class="inner">
-           <?php         // Print any error messages, if they exist:
+<?php         // Print any error messages, if they exist:
 if (!empty($errors)) {
   echo '<h1>Error!</h1>
   <p class="error">The following error(s) occurred:<br />';
@@ -198,7 +181,7 @@ if (!empty($errors)) {
    <div class="form-group field"><label>Address:</label><input  class="form-control" type="text" name="address" value="<?php  echo $row['address'] ?>"/><span class="error">* <?php echo $addressErr;?></span></div>
    <div class="form-group field"><label>District:</label><select  class="form-control" name="district">
    <option value=""></option>
-   <?php 
+<?php 
 $districtlist=array("Islands",
 "Kwai Tsing",
 "North",
@@ -252,29 +235,7 @@ while ($row2 = mysqli_fetch_array ($r2, MYSQLI_ASSOC)) {
   <div class="form-group field"><label>Password:</label><input  class="form-control" type="password" name="pass" value="" form="register-form"/><span class="error">* <?php echo $passwordErr;?></span></div>
    <div class="form-group"><label>Password Confirmation:</label><input  class="form-control" type="password" name="pass2" value="" form="register-form"/><span class="error">* </span></div>
 <div class="form-group"><input form="register-form" type="hidden" name="submitted" value="TRUE" /><input form="register-form" type="submit" name="submit" value="Update profile!" /></div>
-
-  
-
-
-    </div>
-               </div>
-               <div class="left-bot-corner">
-                <div class="right-bot-corner">
-                    <div class="border-bot"></div>
-                  </div>
-               </div>
-            </div>
-            <!-- box end -->
-         </div>
-      </div>
-   </div>
 <?php // Include the footer:
-echo '
-<!--Recent articles list ends -->    
- </div>
-      </div>
-   </div>
-   <!-- footer -->';
 include ('includes/footer.html');
  mysqli_close($dbc);
 ?>

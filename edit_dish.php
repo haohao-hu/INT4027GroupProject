@@ -1,7 +1,7 @@
 <?php #
 	session_start();
 $page_title = '| Edit dish';
-include ('includes/header.html');
+
 include 'includes/test_input.php';
 require_once ('mysqli_connect.php');
    require_once ('includes/login_functions.inc.php');
@@ -156,21 +156,9 @@ if (isset($_POST['submitted'])) { // Handle the form.
 
 
 // Display the form...
+require_once ('includes/header.html');
 ?>
-   <div id="content">
-      <div class="container">
-         <div class="inside">
-            <!-- box begin -->
-            <div class="box alt">
-            	<div class="left-top-corner">
-               	<div class="right-top-corner">
-                  	<div class="border-top"></div>
-                  </div>
-               </div>
-               <div class="border-left">
-               	<div class="border-right">
-                  	<div class="inner">
- <?php                 	// Check for any errors and print them:
+<?php                 	// Check for any errors and print them:
 if ( !empty($errors) && is_array($errors) ) {
 	echo '<h1>Error!</h1>
 	<p style="font-weight: bold; color: #C00">The following error(s) occurred:<br />';
@@ -202,18 +190,5 @@ if ( !empty($errors) && is_array($errors) ) {
 	<input type="hidden" name="submitted" value="TRUE" />
 
 </form>
-</div>
-                     </div>
-                  </div>
-               </div>
-               <div class="left-bot-corner">
-               	<div class="right-bot-corner">
-                  	<div class="border-bot"></div>
-                  </div>
-               </div>
-            </div>
-            </div></div>
-</body>
-</html>
 <?php include ('includes/footer.html');
 ?>

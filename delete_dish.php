@@ -8,6 +8,7 @@ if ( (isset($_GET['dishid'])) && (is_numeric($_GET['dishid'])) ) {
 } elseif ( (isset($_POST['dishid'])) && (is_numeric($_POST['dishid'])) ) { // Form submission.
 	$dishid = $_POST['dishid'];
 } else { // No valid ID, kill the script.
+	require_once ('includes/header.html');
 	echo '<p class="error">This page has been accessed in error.</p>';
 	include ('includes/footer.html'); 
 	exit();
@@ -20,24 +21,6 @@ if (!isset($_SESSION['restaurant_id'])) {
 	exit();		
 }
 $page_title = '| Delete a dish';
-include ('includes/header.html');
-echo '<div id="content">
-      <div class="container">
-         <div class="inside">
-            <!-- box begin -->
-            <div class="box alt">
-            	<div class="left-top-corner">
-               	<div class="right-top-corner">
-                  	<div class="border-top"></div>
-                  </div>
-               </div>
-               <div class="border-left">
-               	<div class="border-right">
-                  	<div class="inner">
-                     	<div class="wrapper">
-<h3>Delete the dish</h3>';
-
-
 
 require_once ('./mysqli_connect.php');
 
@@ -56,7 +39,10 @@ if (isset($_POST['submitted'])) {
 		unlink ($imagename);
 	}
 			// Print a message:
-			echo '<p>The dish has been deleted.</p>';	
+			echo '<div class="alert alert-success">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>The dish has been deleted.</strong>
+</div>';	
 		
 		} else { // If the query did not run OK.
 			echo '<p class="error">The dish could not be deleted due to a system error.</p>'; // Public message.
@@ -74,14 +60,14 @@ if (isset($_POST['submitted'])) {
 
 } else { // Show the form.
 
-	// Retrieve the message's information:
+	// Retrieve the dish's information:
 	$q = "SELECT * FROM dish WHERE dish_id=".$dishid;
 	$r = @mysqli_query ($dbc, $q)
 	Or die ("no such dish in menu");
 	
 	if (mysqli_num_rows($r) == 1) { // Valid message ID, show the form.
 
-		// Get the message's information:
+		// Get the dish's information:
 		$row = mysqli_fetch_array ($r, MYSQLI_NUM);
 // If dish is not belong to the restaurant, redirect the user:
 if ($row[5]!=$_SESSION['restaurant_id']) {
@@ -90,7 +76,9 @@ if ($row[5]!=$_SESSION['restaurant_id']) {
 	header("Location: $url");
 	exit();		
 }		
+require_once ('includes/header.html');
 		// Create the form:
+echo '<h3>Delete the dish</h3>';
 		echo '<form action="delete_dish.php" method="post">
 	<h3>Name: ' . $row[1] . '</h3>
 	<p>Are you sure you want to delete this dish?<br />
@@ -108,24 +96,7 @@ if ($row[5]!=$_SESSION['restaurant_id']) {
 } // End of the main submission conditional.
 
 mysqli_close($dbc);
-echo '                        	<dl class="special fright">
-                           	</div>
-                     </div>
-                  </div>
-               </div>
-               <div class="left-bot-corner">
-               	<div class="right-bot-corner">
-                  	<div class="border-bot"></div>
-                  </div>
-               </div>
-            </div>
-            <!-- box end -->
-	
-<!--Recent articles list ends -->	 
- </div>
-      </div>
-   </div>
-';	
+
 		
 include ('includes/footer.html');
 ?>

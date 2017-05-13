@@ -12,7 +12,6 @@ if (isset($_SESSION['customer_id'])) {
 
 // Include the header:
 $page_title = '| Customer registration';
-include ('includes/header.html');
 // Print any error messages, if they exist:
 if (!empty($errors)) {
 	echo '<h1>Error!</h1>
@@ -137,9 +136,12 @@ $fdish=$_POST["favouritedish"];
     //$_SESSION['admin'] = $data['admin'];
     //}
       // Redirect:
-//$url = absolute_url('customer_register_page.php');
-//header("Location: ".$url);
-      echo '<h1>Thank you!</h1><p>You are now registered. </p>';
+$url = absolute_url('index.php');
+header("Location: ".$url);
+      echo '<div class="alert alert-success">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Welcome! You are now registered.</strong>
+</div>';
       exit(); 
       } else { // If it did not run OK.
          
@@ -157,7 +159,7 @@ $fdish=$_POST["favouritedish"];
 
 
 }
-  
+  require_once ('includes/header.html');
 ?>
 <!-- content -->
    <div id="content">

@@ -1,8 +1,7 @@
 <?php #
 	session_start();
 $page_title = '| Add a dish';
-include ('includes/header.html');
-include 'includes/test_input.php';
+require_once ('includes/test_input.php');
 require_once ('mysqli_connect.php');
    require_once ('includes/login_functions.inc.php');
 if (!isset($_SESSION['restaurant_id'])) {
@@ -122,6 +121,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 
 
 // Display the form...
+require_once ('includes/header.html');
 ?>
    <div id="content">
       <div class="container">

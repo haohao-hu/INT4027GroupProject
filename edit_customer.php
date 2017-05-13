@@ -37,7 +37,7 @@ include ('includes/footer.html');
 
 // Include the header:
 $page_title = '| Edit customer profile';
-include ('includes/header.html');
+
 
 // Print any error messages, if they exist:
 if (!empty($errors)) {
@@ -186,22 +186,8 @@ $fdish=$_POST["favouritedish"];
  }
 
 }
-  
+  require_once ('includes/header.html');
 ?>
-<!-- content -->
-   <div id="content">
-      <div class="container">
-         <div class="inside">
-            <!-- box begin -->
-            <div class="box alt">
-              <div class="left-top-corner">
-                <div class="right-top-corner">
-                    <div class="border-top"></div>
-                  </div>
-               </div>
-               <div class="border-left">
-                <div class="border-right">
-                    <div class="inner">
 <h2>Edit customer profile</h2>
 <form role="form" id="register-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" role="form">
    <div class="form-group"><label>Name:</label><input class="form-control"  type="text" name="name" value="<?php  echo $row['customer_name'] ?>"/><span class="error">* <?php echo $nameErr;?></span></div>
@@ -255,26 +241,7 @@ while ($row6 = mysqli_fetch_array ($r6, MYSQLI_ASSOC)) {
 
   <input type="hidden" name="submitted" value="TRUE" form="register-form" />
 </form>
-
-    </div>
-               </div>
-               <div class="left-bot-corner">
-                <div class="right-bot-corner">
-                    <div class="border-bot"></div>
-                  </div>
-               </div>
-            </div>
-            <!-- box end -->
-         </div>
-      </div>
-   </div>
 <?php // Include the footer:
-echo '
-<!--Recent articles list ends -->    
- </div>
-      </div>
-   </div>
-   <!-- footer -->';
 include ('includes/footer.html');
  mysqli_close($dbc);
 ?>

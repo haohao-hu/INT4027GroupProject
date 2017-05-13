@@ -14,10 +14,10 @@ if (isset($_SESSION['restaurant_id'])) {
 // This page prints any errors associated with registration
 // and it creates the entire Register page, including the form.
 
-// Include the header:
+
 
 $page_title = '| Restaurant Sign up';
-include ('includes/header.html');
+
 
 
 // Display the form:
@@ -142,9 +142,9 @@ include 'includes/test_input.php';
       
       // Redirect:
 
-      //$url = absolute_url ();
+      $url = absolute_url ();
 
-      //header("Location: $url");
+      header("Location: $url");
       exit(); 
       
       } else { // If it did not run OK.
@@ -163,7 +163,7 @@ include 'includes/test_input.php';
 
 
 }
-  
+  require_once ('includes/header.html');
 ?>
 <!-- content -->
    <div id="content">
