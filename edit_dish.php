@@ -44,7 +44,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
 	// Validate the incoming data...
 	$errors = array();
 
-	// Check for a print name:
+	// Check for a dish name:
 	if (!empty($_POST['dish_name'])) {
 		$dn = test_input($_POST['dish_name']);
 	} else {
@@ -114,7 +114,7 @@ if (isset($_POST['submitted'])) { // Handle the form.
             if (mysqli_stmt_affected_rows($stmt) == 1) { // If it ran OK.
 		// Print a message:
 			
-			echo '<p>The dish has been editted.</p>';
+			echo '<p>The dish has been updated.</p>';
 			if ($temp != NULL) {
 				// Delete the previous image if it still exists:
 			$imagename="./uploads/".$dishid;
@@ -185,7 +185,7 @@ if ( !empty($errors) && is_array($errors) ) {
 	
 	</fieldset>
 		
-	<div align="center"><input type="submit" name="submit" value="Add" /></div>
+	<div align="center"><input type="submit" name="submit" value="Update" /></div>
 	<input type="hidden" name="dishid" value="<?php echo $dishid ?>" />
 	<input type="hidden" name="submitted" value="TRUE" />
 

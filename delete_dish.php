@@ -39,10 +39,15 @@ if (isset($_POST['submitted'])) {
 		unlink ($imagename);
 	}
 			// Print a message:
-			echo '<div class="alert alert-success">
+	//require_once ('includes/header.html');
+	require_once('includes/login_functions.inc.php');
+	$url = absolute_url ('browse_menu.php');
+		header("Location: $url");
+		exit();	
+			/*echo '<div class="alert alert-success">
   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   <strong>The dish has been deleted.</strong>
-</div>';	
+</div>';*/	
 		
 		} else { // If the query did not run OK.
 			echo '<p class="error">The dish could not be deleted due to a system error.</p>'; // Public message.
